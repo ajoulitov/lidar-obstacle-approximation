@@ -1,8 +1,8 @@
 from __future__ import annotations
-from typing import Tuple
+from typing import Tuple, List
 from .primitives import Point2D, EPS
 from .segment import Segment
-
+from math import atan2
 
 def closest_points_between_segments(s1: Segment, s2: Segment) -> Tuple[Point2D, Point2D]:
     p1 = s1.p1
@@ -58,3 +58,16 @@ def closest_points_between_segments(s1: Segment, s2: Segment) -> Tuple[Point2D, 
 def distance_between_segments(s1: Segment, s2: Segment) -> float:
     p, q = closest_points_between_segments(s1, s2)
     return p.distance_to(q)
+
+
+def polar_angle(p: Point2D):
+    dx = float(p.x)
+    dy = float(p.y)
+    ang = atan2(dy, dx)
+    r2 = dx * dx + dy * dy
+    return (ang, r2)
+
+
+def polar_sort(points: List[Point2D]) -> List[Point2D]:
+
+    points.sort(key=polar_angle)

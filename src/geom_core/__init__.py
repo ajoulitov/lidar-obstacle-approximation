@@ -3,7 +3,7 @@ from .line import Line
 from .segment import Segment
 from .circle import Circle
 from .aabb import AABB
-from .geometry_utils import closest_points_between_segments, distance_between_segments
+from .geometry_utils import closest_points_between_segments, distance_between_segments, polar_sort
 
 __all__ = [
     "Point2D",
@@ -14,4 +14,5 @@ __all__ = [
     "AABB",
     "closest_points_between_segments",
     "distance_between_segments",
+    "polar_sort",
 ]
