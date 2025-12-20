@@ -13,7 +13,7 @@ PARAMS = dict(
     N_min=2,
 )
 
-def approximate_with_egments(points : List[Point2D]) -> List[Segment]:
+def approximate_with_segments(points : List[Point2D]) -> List[Segment]:
     clusters = group_and_split(
         points,
         d_group=PARAMS["d_group"],
