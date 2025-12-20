@@ -1,4 +1,4 @@
-from geom_core import Point2D, Segment
+from ..geom_core import Point2D, Segment
 from typing import List
 from .cluster import Cluster
 from .segmentation import merge_all_segments

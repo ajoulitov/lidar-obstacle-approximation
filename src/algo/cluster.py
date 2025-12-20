@@ -1,19 +1,19 @@
 from ..geom_core import Point2D, Line, EPS, Segment, polar_sort 
-from typing import List, Self, Tuple, Optional
+from typing import List, Tuple, Optional
 import numpy as np
 
 
 class Cluster:
-    def __init__(self : Self, points: Optional[List[Point2D]] = None) -> None:
+    def __init__(self, points: Optional[List[Point2D]] = None) -> None:
         self.points: List[Point2D] = points if points is not None else []
         polar_sort(self.points)
         self.seg: Optional[Segment] = None
         self.line: Optional[Line] = None
 
-    def add_point(self : Self, p : Point2D) -> None:
+    def add_point(self, p : Point2D) -> None:
         self.points.append(p)
 
-    def orthogonal_regression_line(self : Self) -> "Line":
+    def orthogonal_regression_line(self) -> "Line":
         if len(self.points) < 2:
             raise ValueError("At least two points are required")
 
@@ -37,17 +37,17 @@ class Cluster:
 
         return Line(A, B, C)
 
-    def leading_line(self : Self) -> Line:
+    def leading_line(self) -> Line:
         if self.line == None:
             self.line = self.orthogonal_regression_line()
         return self.line
 
-    def segment(self : Self) -> Segment:
+    def segment(self) -> Segment:
         if self.seg == None:
             self.seg = self.approximating_segment()
         return self.seg
 
-    def furthest_point(self : Self, line : Line) -> Tuple[int, float]:
+    def furthest_point(self, line : Line) -> Tuple[int, float]:
         if not self.points:
             raise ValueError("No points provided")
         pos = 0
@@ -60,7 +60,7 @@ class Cluster:
         return [pos, maxd]
 
 
-    def approximating_segment(self: Self) -> Segment:
+    def approximating_segment(self) -> Segment:
         if len(self.points) == 1:
             return Segment(self.points[0], self.points[0])
         line = self.leading_line()
