@@ -37,12 +37,12 @@ class Cluster:
 
         return Line(A, B, C)
 
-    def leading_line(self : Self):
+    def leading_line(self : Self) -> Line:
         if self.line == None:
             self.line = self.orthogonal_regression_line()
         return self.line
 
-    def segment(self : Self):
+    def segment(self : Self) -> Segment:
         if self.seg == None:
             self.seg = self.approximating_segment()
         return self.seg
