@@ -1,7 +1,4 @@
-from geom_core.primitives import Point2D
-from geom_core.circle import Circle
-from geom_core.line import Line
-from geom_core.segment import Segment
+from geom_core import Point2D, Circle, Line, Segment
 import math
 
 

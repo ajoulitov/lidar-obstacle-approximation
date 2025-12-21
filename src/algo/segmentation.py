@@ -1,6 +1,6 @@
 from typing import List, Tuple
 from .cluster import Cluster
-from ..geom_core import distance_between_segments
+from geom_core import distance_between_segments
 from .dsu import DSU
 
 

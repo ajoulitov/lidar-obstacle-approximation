@@ -1,6 +1,6 @@
 from typing import List
 from .cluster import Cluster
-from ..geom_core import Point2D
+from geom_core import Point2D
 import sys
 
 def group(c: Cluster, d_group: float = 1.0, d_p: float = 0.1) -> List[Cluster]:

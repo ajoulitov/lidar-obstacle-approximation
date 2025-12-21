@@ -1,4 +1,4 @@
-from ..geom_core import Point2D, Line, EPS, Segment, polar_sort 
+from geom_core import Point2D, Line, EPS, Segment, polar_sort 
 from typing import List, Self, Tuple, Optional
 import numpy as np
 
