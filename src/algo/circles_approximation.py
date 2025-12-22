@@ -2,21 +2,29 @@ from typing import List
 from geom_core import Point2D, Segment, Circle, EPS
 import math
 
-
 def bounding_circle(seg: Segment, r_d: float) -> Circle:
     l = seg.length()
+    mid = seg.midpoint()
+
     if l <= EPS:
-        return Circle(seg.midpoint(), r_d)
+        return Circle(mid, max(0.0, r_d))
 
     r = l / math.sqrt(3.0)
     d = seg.direction()
     n = Point2D(d.y, -d.x)
-    mid = seg.midpoint()
+    n_len = math.hypot(n.x, n.y)
+    if n_len <= EPS:
+        return Circle(mid, r + r_d)
+
+    n = n.scale(1.0 / n_len)
     to0 = Point2D(-mid.x, -mid.y)
     if n.dot(to0) < 0.0:
         n = n.scale(-1.0)
-    center = mid + n.scale(r)
+
+    center = mid + n.scale(-r)
+
     return Circle(center, r + r_d)
+
 
 
 def merge_all_circles(circles: List[Circle], r_max) -> List[Circle]:
@@ -48,8 +56,11 @@ def merge_all_circles(circles: List[Circle], r_max) -> List[Circle]:
                 if not out[i].intersects_with_circle(out[j]):
                     continue
                 base = Segment(out[i].center, out[j].center)
-                c = bounding_circle(base, 0.0)
-                c = Circle(c.center, c.radius + max(out[i].radius, out[j].radius))
+                mid = base.midpoint()
+                d = out[i].center.distance_to(out[j].center)
+                r0 = d / math.sqrt(3.0)
+                c = Circle(mid, r0 + max(out[i].radius, out[j].radius))
+
                 if c.radius > r_max:
                     continue
                 out = [out[k] for k in range(n) if k != i and k != j]

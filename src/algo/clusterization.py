@@ -13,7 +13,7 @@ PARAMS = dict(
     d_p=0,
     N_min=5,
     r_d=0,
-    r_max=30,
+    r_max=15,
 )
 
 
