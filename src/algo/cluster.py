@@ -1,7 +1,6 @@
-from geom_core import Point2D, Line, EPS, Segment, polar_sort, Circle
-from typing import List, Self, Tuple, Optional
+from geom_core import Point2D, Line, EPS, Segment, polar_sort
+from typing import List, Tuple, Optional
 import numpy as np
-import math
 
 class Cluster:
     def __init__(self, points: Optional[List[Point2D]] = None) -> None:
