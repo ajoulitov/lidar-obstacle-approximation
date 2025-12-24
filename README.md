@@ -15,4 +15,3 @@
 
 <img src="./interaction_scheme.svg" alt="Диаграмма архитектуры" >
 
-
